@@ -1,4 +1,5 @@
 #!/bin/bash
+chmod +x build.sh build.bat
 echo "[1/4] git pull..."
 git pull
 
