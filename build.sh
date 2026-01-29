@@ -1,16 +1,23 @@
 #!/bin/bash
-chmod +x build.sh build.bat
-echo "[1/4] git pull..."
-git pull
+echo "Updating repository..."
+git pull origin lab2-process 2>nul || echo "Skip remote"
 
-echo "[2/4] compile gcc..."
-mkdir -p build
-g++ -std=c++17 -Wall -o build/hello src/main.cpp
-if [ $? -ne 0 ]; then
-    exit 1
+echo "Cleaning previous build..."
+rm -rf build
+
+echo "Configuring with CMake..."
+mkdir -p build && cd build
+cmake ..
+
+echo "Building..."
+make
+
+echo "Running test..."
+if [ -f process_test ]; then
+    ./process_test
+else
+    echo "ERROR: process_test not found"
+    ls -la *.exe process_test 2>/dev/null || ls
 fi
 
-echo "[3/4] run..."
-./build/hello
-
-echo "[4/4] OK!"
+cd ..
