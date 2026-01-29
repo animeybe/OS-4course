@@ -1,0 +1,61 @@
+# C++ Build Artifacts
+build/
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.a
+*.lib
+*.pdb
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+cmake_install.cmake
+Makefile
+cmake-build-*/
+CMakeDoxygenDefaults.cmake
+CPackConfig.cmake
+CPackSourceConfig.cmake
+CTestTestfile.cmake
+_install_manifest.txt
+_compile_commands.json
+
+# VirtualBox / VM snapshots
+*.vdi
+*.vmdk
+*.vmsd
+*.vmxf
+*.vbox
+*.sav
+*.vmsn
+
+# IDE/Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Generated
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs and Databases
+*.log
+logs/
+*.db
+*.sqlite
+
+# Dependencies
+third-party/
+deps/
+libs/
+
+# Lab-specific
+lab2_result.txt
+*.txt.temp

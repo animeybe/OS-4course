@@ -1,4 +1,0 @@
-C:/Users/Dumka/Desktop/all/study/_7term/OS/labs/build/CMakeFiles/process_lib.dir
-C:/Users/Dumka/Desktop/all/study/_7term/OS/labs/build/CMakeFiles/process_test.dir
-C:/Users/Dumka/Desktop/all/study/_7term/OS/labs/build/CMakeFiles/edit_cache.dir
-C:/Users/Dumka/Desktop/all/study/_7term/OS/labs/build/CMakeFiles/rebuild_cache.dir
