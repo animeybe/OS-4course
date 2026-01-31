@@ -18,6 +18,30 @@ PID=XXXX, Counter=NNN
 Master=YES/NO  
 Value (Enter=OK): → Вводите число или Enter
 
+## Как пользоваться
+
+### Запуск программы
+
+```bash
+Timer started. PID: #### (MAIN)
+Commands: 'set X' or Ctrl+C
+```
+
+### Команды
+
+```bash
+set 150 # Установить счетчик = 150
+set 999 # Установить счетчик = 999
+[Enter] # Продолжить работу без изменений
+Ctrl+C # Завершение
+```
+
+### Где смотреть логи
+
+```bash
+build/logs/timer.log
+```
+
 ## Запуск
 
 ### Windows:
