@@ -1,18 +1,20 @@
-cmake_minimum_required(VERSION 3.10)
-project(TimerLab)
+cmake_minimum_required(VERSION 3.16)
+project(temp_logger)
 
 set(CMAKE_CXX_STANDARD 17)
 
-# Создаем директорию для логов
-file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/logs)
-
-add_executable(timer_lab 
+# Создаем исполняемый файл
+add_executable(temp_logger 
     src/main.cpp 
-    src/timer.cpp
+    src/temp_simulator.cpp 
+    src/temp_logger.cpp 
+    src/data_types.cpp
 )
 
-target_include_directories(timer_lab PRIVATE include)
+# Заголовочные файлы
+target_include_directories(temp_logger PRIVATE include)
 
+# Кроссплатформенность
 if(WIN32)
-    target_link_libraries(timer_lab ws2_32)
+    target_link_libraries(temp_logger wsock32 ws2_32)
 endif()
