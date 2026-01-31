@@ -1,6 +1,6 @@
 # Лабораторная работа 4: Логгер температуры
 
-Кроссплатформенная программа: чтение температуры → 3 лога с автоочисткой.
+Кроссплатформенная программа: чтение температуры > 3 лога с автоочисткой.
 
 ## Как работает
 
@@ -8,15 +8,15 @@
 
 Логгер автоматически:
 
-- Raw данные (raw_temps.log) → 24 часа хранения.
-- Средняя/час (hourly_avg.log) → 1 месяц хранения
-- Средняя/день (daily_avg.log) → 1 год хранения.
+- Raw данные (`raw_temps.log`) > 24 часа хранения
+- Средняя/час (`hourly_avg.log`) > 1 месяц хранения
+- Средняя/день (`daily_avg.log`) > 1 год хранения
 
 Автоочистка по расписанию:
 
-- raw_temps.log: удаляет >24ч
-- hourly_avg.log: удаляет >1мес
-- daily_avg.log: удаляет >1год
+- `raw_temps.log`: > 10MB > удалить
+- `hourly_avg.log`: > 5MB > удалить
+- `daily_avg.log`: > 1MB > удалить
 
 ## Как пользоваться
 
@@ -24,29 +24,32 @@
 
 ```bash
 Temperature Logger started
-Raw log:    build/logs/raw_temps.log (24ч)
-Hourly log: build/logs/hourly_avg.log (1мес)
-Daily log:  build/logs/daily_avg.log (1год)
+Raw log:     logs/raw_temps.log (24h)
+Hourly log:  logs/hourly_avg.log (1 month)
+Daily log:   logs/daily_avg.log (1 year)
 Simulating device... Press Ctrl+C to stop
+
+[2026-02-01 00:00:10.123] 23.45 degrees (C)
+[2026-02-01 00:00:20.456] 22.89 degrees (C)
 ```
 
 ### Команды
 
 ```bash
 Ctrl+C              # Завершение программы
-# Автосимуляция: 23°C ±2°C каждые 10с
+# Симуляция: 23C (+-2C) каждые 10с
 ```
 
 ### Где смотреть логи
 
 ```bash
-build/logs/raw_temps.log
-# [2026-02-01 10:00:00.123] 23.45°C
-# [2026-02-01 10:00:10.456] 22.89°C
-build/logs/hourly_avg.log
-# [2026-02-01 10:00:00] 23.12°C (60 измерений)
-build/logs/daily_avg.log
-# [2026-02-01] 22.85°C (24 часа)
+logs/raw_temps.log:
+# [2026-02-01 00:00:00.123] 23.45 C
+# [2026-02-01 00:00:10.456] 22.89 C
+logs/hourly_avg.log:
+# 2026-02-01 00:00:00 23.12 C (360 readings)
+logs/daily_avg.log:
+# 2026-02-01 23.85 C (24 hours)
 ```
 
 ## Запуск

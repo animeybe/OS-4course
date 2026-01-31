@@ -4,22 +4,23 @@
 #include <chrono>
 
 TempSimulator::TempSimulator(double base_temp, double variation)
-    : base_temp(base_temp), variation(variation), last_reading(std::chrono::system_clock::now()) {}
+    : base_temp_(base_temp), variation_(variation), 
+      last_reading_(std::chrono::system_clock::now()) {}
 
 TempReading TempSimulator::getNextReading() {
-    // Ждем 10 секунд между измерениями
+    // Enforce 10s interval
     auto now = std::chrono::system_clock::now();
-    if (now - last_reading < std::chrono::seconds(10)) {
-        std::this_thread::sleep_for(std::chrono::seconds(10) - (now - last_reading));
+    auto interval = std::chrono::seconds(10);
+    if (now - last_reading_ < interval) {
+        std::this_thread::sleep_for(interval - (now - last_reading_));
     }
-    last_reading = std::chrono::system_clock::now();
+    last_reading_ = std::chrono::system_clock::now();
 
-    // Генерируем температуру: base ± variation
+    // Generate realistic temperature: base ± variation
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_real_distribution<> dis(-variation, variation);
-    double temp = base_temp + dis(gen);
+    std::uniform_real_distribution<> dis(-variation_, variation_);
+    double temp = base_temp_ + dis(gen);
 
-    TempReading reading{last_reading, temp};
-    return reading;
+    return {last_reading_, temp};
 }
