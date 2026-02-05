@@ -12,14 +12,16 @@
 int launch_background(const char* cmd, int* pid) {
 #ifdef _WIN32
     // Windows: CreateProcessA
-    STARTUPINFOA si = {0}; si.cb = sizeof(si);
+    STARTUPINFOA si;
+    ZeroMemory(&si, sizeof(si));
+    si.cb = sizeof(si);
     PROCESS_INFORMATION pi = {0};
     si.dwFlags = STARTF_USESHOWWINDOW; si.wShowWindow = SW_SHOW;
     
     if (!CreateProcessA(NULL, (LPSTR)cmd, NULL, NULL, FALSE, 
                        CREATE_NEW_CONSOLE, NULL, NULL, &si, &pi)) {
         return -1;  // Ошибка запуска
-    }
+    }   
     *pid = (int)pi.dwProcessId;  // Сохраняем PID
     CloseHandle(pi.hThread); 
     CloseHandle(pi.hProcess);
@@ -32,7 +34,7 @@ int launch_background(const char* cmd, int* pid) {
         execl("/bin/sh", "sh", "-c", cmd, NULL);
         _exit(127);  // Ошибка execl
     }
-    return 0;
+    return 0;   
 #endif
 }
 

@@ -8,18 +8,13 @@ rmdir /s /q build 2>nul
 mkdir build
 cd build
 
-echo [3] Tools...
-gcc --version
-cmake --version
-make --version
+echo [3] CMake...
+cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release
 
-echo [4] CMake...
-cmake .. -G "MinGW Makefiles" -DCMAKE_MAKE_PROGRAM=make.exe
+echo [4] Build...
+mingw32-make -j4
 
-echo [5] Build...
-make
-
-echo [6] Test...
+echo [5] Test...
 if exist process_test.exe (
     process_test.exe
 ) else (
